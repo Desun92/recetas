@@ -1,0 +1,151 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="recetas_receta_tree_view">
+      <field name="name">recetas.receta</field>
+      <field name="model">recetas.receta</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="autor"/>
+          <field name="categoria"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="recetas_receta_form_view">
+      <field name="name">recetas.receta</field>
+      <field name="model">recetas.receta</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de Recetas">
+            <sheet>
+              <field name="fotografia" widget="image"/>
+                <group colspan="2" col="2">
+                  <field name="name"/>
+                  <field name="autor"/>
+                  <field name="categoria"/>
+                  <field name="descripcion"/>
+                  <field name="fechacreacion"/>
+                  <field name="vegana"/>
+                  <field name="ingredientes"/> 
+                </group>   
+            </sheet>               
+        </form>
+      </field>
+    </record>
+
+  <record model="ir.ui.view" id="recetas_autor_tree_view">
+      <field name="name">recetas.autor</field>
+      <field name="model">recetas.autor</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="nombre"/>
+          <field name="apellidos"/>
+        </tree>
+      </field>
+    </record>
+
+ <record model="ir.ui.view" id="recetas_autor_form_view">
+      <field name="name">recetas.autor</field>
+      <field name="model">recetas.autor</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de Autores">
+            <sheet>
+              <field name="imagen" widget="image"/>
+                <group colspan="2" col="2">
+                  <field name="name"/>
+                  <field name="nombre"/>
+                  <field name="apellidos"/>
+                  <field name="dni"/>
+                  <field name="experiencia"/>
+                  <field name="recetascreadas"/>
+                </group>   
+            </sheet>           
+        </form>
+      </field>
+    </record>
+
+     <record model="ir.ui.view" id="recetas_categoria_tree_view">
+      <field name="name">recetas.categoria</field>
+      <field name="model">recetas.categoria</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="recetas"/>
+        </tree>
+      </field>
+    </record>
+
+ <record model="ir.ui.view" id="recetas_categoria_form_view">
+      <field name="name">recetas.categoria</field>
+      <field name="model">recetas.categoria</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de Categorias">
+            <sheet>
+                <group colspan="2" col="2">
+                  <field name="name"/>
+                  <field name="recetas"/>
+                </group>   
+            </sheet>                       
+        </form>
+      </field>
+    </record>
+  
+   
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_recetas_receta">
+      <field name="name">Listado de Recetas</field>
+      <field name="res_model">recetas.receta</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_recetas_autor">
+      <field name="name">Autores de Recetas</field>
+      <field name="res_model">recetas.autor</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window" id="action_recetas_categoria">
+      <field name="name">Categorias</field>
+      <field name="res_model">recetas.categoria</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+ 
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="yodamodule.action_server">
+      <field name="name">yodamodule server</field>
+      <field name="model_id" ref="model_yodamodule_yodamodule"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+    <menuitem name="Recetario" id="recetario_padre"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Recetario" id="recetario" parent="recetario_padre"/>
+
+
+    <!-- actions -->
+
+    <menuitem name="Recetas" id="recetas" parent="recetario"
+              action="action_recetas_receta"/>
+    <menuitem name="Autores" id="autores" parent="recetario"
+              action="action_recetas_autor"/>
+    <menuitem name="Categorias" id="categorias" parent="recetario"
+              action="action_recetas_categoria"/>
+   
+  </data>
+</odoo>
